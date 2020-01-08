@@ -1,4 +1,4 @@
-package com.mairie.biblio.repository;
+package com.mairie.biblio.biblioWebservice.repository;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.mairie.biblio.model.Book;
+import com.mairie.biblio.biblioWebservice.model.Book;
 
 
 public interface BookRepository extends CrudRepository<Book, Long>{

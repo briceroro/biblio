@@ -1,4 +1,4 @@
-package com.mairie.biblio.model;
+package com.mairie.biblio.biblioWebservice.model;
 
 
 import java.util.Date;
