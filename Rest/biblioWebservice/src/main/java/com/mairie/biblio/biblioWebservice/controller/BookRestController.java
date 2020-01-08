@@ -1,4 +1,4 @@
-package com.mairie.biblio.biblioWebservice.restController;
+package com.mairie.biblio.biblioWebservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,8 @@ import com.mairie.biblio.biblioWebservice.repository.BookRepository;
 @RestController
 public class BookRestController {
 	
-	@Autowired BookRepository bookrepository;
+	@Autowired 
+	BookRepository bookrepository;
 	
 	@GetMapping(value="/Book/{id}")
 	public Book findById(@PathVariable int id) {
