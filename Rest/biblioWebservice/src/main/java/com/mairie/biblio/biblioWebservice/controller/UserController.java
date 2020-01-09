@@ -32,22 +32,22 @@ public class UserController{
         return userService.findByUsername(username);
     }
     
-    @GetMapping(value="/UserById/{id}")
+    @GetMapping(value="/user/id/{id}")
     public  User findUserById(@PathVariable int id) {
         return userService.findUserById(id);
     }
    
-    @PostMapping(value="/User")
+    @PostMapping(value="/user")
     public void createUser(@RequestBody User user) {
     	userService.createUser(user);
     }
     
-    @PutMapping("/User")
+    @PutMapping("/user")
     public void updateEmployee(@RequestBody User user) {	
     	userService.updateEmployee(user);
     }
     
-    @DeleteMapping(value="/User/{id}")
+    @DeleteMapping(value="/user/{id}")
     public void deleteUser(@PathVariable int id) {
     	userService.deleteUser(id);
     }

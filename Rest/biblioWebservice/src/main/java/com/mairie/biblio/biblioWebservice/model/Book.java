@@ -19,6 +19,7 @@ public class Book {
 	@Column(name = "book_id")
 	private int id;
 	
+	@Column(unique = true)
 	private String title;
 	
 	@Column(columnDefinition="text")
@@ -45,17 +46,22 @@ public class Book {
 	public Book () {
 	
 	}
-	
-	public Book ( String title,String description,String author,String category,Boolean dispo,int nbrOfBook) {
+
+	public Book(String title, String description, boolean dispo, int nbrOfBook, int nbrDispo, Date dateAvalaible,
+			String author, String category, boolean reserve, int nbrBooking) {
 		super();
 		this.title = title;
 		this.description = description;
+		this.dispo = dispo;
+		this.nbrOfBook = nbrOfBook;
+		this.nbrDispo = nbrDispo;
+		this.dateAvalaible = dateAvalaible;
 		this.author = author;
 		this.category = category;
-		this.nbrOfBook = nbrOfBook;
+		this.reserve = reserve;
+		this.nbrBooking = nbrBooking;
 	}
-	
-	
+
 	public int getId() {
 		return id;
 	}
@@ -71,8 +77,6 @@ public class Book {
 	public String getTitle() {
 		return title;
 	}
-
-
 
 	public void setTitle(String title) {
 		this.title = title;
