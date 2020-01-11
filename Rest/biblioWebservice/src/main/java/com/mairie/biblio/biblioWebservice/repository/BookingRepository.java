@@ -9,13 +9,8 @@ import com.mairie.biblio.biblioWebservice.model.Booking;
 
 public interface BookingRepository extends CrudRepository<Booking, Integer>{
 	
-    Booking findById(int id);
-
-	List<Booking> findByUser_id(int id);
-
-	@Query("from Booking") 
-	List<Booking> findAllbooking();
-
-	List<Booking> findByBook_id(int bookId);
+	public List<Booking> findByUser_id(int userId);
+	public List<Booking> findByBook_id(int bookId);
+	
 
 }

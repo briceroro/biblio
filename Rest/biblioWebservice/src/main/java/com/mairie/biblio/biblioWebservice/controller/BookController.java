@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.mairie.biblio.biblioWebservice.model.Book;
-import com.mairie.biblio.biblioWebservice.repository.BookRepository;
 import com.mairie.biblio.biblioWebservice.service.BookService;
 
 @RestController
@@ -59,7 +57,7 @@ public class BookController {
 	
 	@PutMapping(value="/book")
 	public void updateBook(@RequestBody Book book) {
-		bookService.createBook(book);
+		bookService.updateBook(book);
 		
 	}
 	
