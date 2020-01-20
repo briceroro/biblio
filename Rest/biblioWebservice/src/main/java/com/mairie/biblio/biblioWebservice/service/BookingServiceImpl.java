@@ -53,7 +53,7 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public void createBooking(Booking booking) {
+	public Booking createBooking(Booking booking) {
 		
 		int userId = booking.getUser().getId();
 		int bookId = booking.getBook().getId();
@@ -83,17 +83,21 @@ public class BookingServiceImpl implements BookingService {
 
 		bookingRepository.save(booking);
 		bookService.updateBook(book);
+	
+		return booking;
 
 	}
 
 	@Override
-	public void updateBooking(Booking booking) {
+	public Booking updateBooking(Booking booking) {
 
 		Booking bookingUpdate = bookingRepository.findById(booking.getId()).orElseThrow(()
         		-> new TargetUnknownException("booking :"+booking.getId()+" est introuvable/n'existe pas"));
 		
 		bookingUpdate.setMaxDateBooking(booking.getMaxDateBooking());
 		bookingUpdate.setPriorityOrder(booking.getPriorityOrder());
+		
+		return booking;
 		
 	}
 

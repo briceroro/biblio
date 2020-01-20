@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.mairie.biblio.biblioWebservice.model.Booking;
 import com.mairie.biblio.biblioWebservice.service.BookingService;
+
 
 @RestController
 public class BookingController {
@@ -32,14 +34,15 @@ public class BookingController {
 	}
 	
 	@GetMapping(value="/booking/id/{id}")
-	public Iterable<Booking> findById(@PathVariable int bookId) {
-		return bookingService.findAllByBook(bookId);
+	public Booking findById(@PathVariable int id) {
+		return bookingService.findById(id);
 		
 	}
 	
 	@PostMapping(value="/booking")
-	public void createBooking(@RequestBody Booking booking) {
+	public Booking createBooking(@RequestBody Booking booking) {
 		bookingService.createBooking(booking);
+		return booking;
 	}
 	
 	@PutMapping(value="/booking")

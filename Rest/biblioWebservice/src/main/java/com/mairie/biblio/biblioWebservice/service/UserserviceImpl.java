@@ -24,6 +24,12 @@ public class UserserviceImpl implements UserService {
 		return userRepository.findByUsername(username).orElseThrow(()
         		-> new TargetUnknownException("User :"+username+" est introuvable/n'existe pas"));
 	}
+	
+	@Override
+	public User findByName(String name) {
+		return userRepository.findByName(name).orElseThrow(()
+        		-> new TargetUnknownException("User :"+name+" est introuvable/n'existe pas"));
+	}
 
 	@Override
 	public User findUserById(int id) {

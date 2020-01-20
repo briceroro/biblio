@@ -10,8 +10,8 @@ public interface BookingService {
 	Iterable<Booking> findAllByUser(int userId);
 	Iterable<Booking> findAllByBook(int bookId);
 	Booking findById(int id);
-	void createBooking(Booking booking);
-	void updateBooking(Booking booking);
+	Booking createBooking(Booking booking);
+	Booking updateBooking(Booking booking);
 	void deleteBooking(Booking booking);
 	void initDateLimiteBooking(int bookingId);
 	
