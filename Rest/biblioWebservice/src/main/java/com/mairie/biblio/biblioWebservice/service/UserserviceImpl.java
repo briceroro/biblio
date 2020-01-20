@@ -8,6 +8,9 @@ import com.mairie.biblio.biblioWebservice.exceptions.TargetUnknownException;
 import com.mairie.biblio.biblioWebservice.model.User;
 import com.mairie.biblio.biblioWebservice.repository.UserRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service(value = "userService")
 public class UserserviceImpl implements UserService {
 
@@ -44,6 +47,7 @@ public class UserserviceImpl implements UserService {
     	}
     	else {
     		userRepository.save(user);	
+    		log.info("L'user: "+user.getUserName()+" a été crée");
            }	
 	}
 
@@ -61,6 +65,7 @@ public class UserserviceImpl implements UserService {
         userUpdate.setRole(user.getRole());
   	
          userRepository.save(userUpdate);
+         log.info("L'user: "+user.getUserName()+" a été modifié");
 		
 	}
 
@@ -70,6 +75,7 @@ public class UserserviceImpl implements UserService {
         		-> new TargetUnknownException("User :"+id+" est introuvable/n'existe pas impossible de le supprimer"));
     	
     	userRepository.delete(user);
+    	log.info("L'user: "+user.getUserName()+" a été supprimé");
 		
 	}
 

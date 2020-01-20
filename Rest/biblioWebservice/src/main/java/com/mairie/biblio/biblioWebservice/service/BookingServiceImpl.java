@@ -1,6 +1,7 @@
 package com.mairie.biblio.biblioWebservice.service;
 
 import java.util.Calendar;
+
 import java.util.Date;
 import java.util.List;
 
@@ -13,10 +14,12 @@ import com.mairie.biblio.biblioWebservice.model.Book;
 import com.mairie.biblio.biblioWebservice.model.Booking;
 import com.mairie.biblio.biblioWebservice.model.BorrowedBook;
 import com.mairie.biblio.biblioWebservice.repository.BookingRepository;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Service(value="bookingService")
 public class BookingServiceImpl implements BookingService {
+	
 	
 	@Autowired
 	BookingRepository bookingRepository;
@@ -42,7 +45,6 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public Iterable<Booking> findAllByBook(int bookId) {
-		
 		return bookingRepository.findByBook_id(bookId);
 	}
 	
@@ -66,13 +68,14 @@ public class BookingServiceImpl implements BookingService {
 		
 		for (int i = 0; i < borrowedBookUserList.size(); i++) {
 		    if (borrowedBookUserList.get(i).getBook().getId() == bookId) {
-		    throw new TargetConflictExeption("xxxxx :"+bookId+"xxxxx");
+		        throw new TargetConflictExeption("le book :"+bookId+"est deja emprunté par l'user: "+userId);
 		    }
 		}
 		
 		for (int i= 0; i < bookingList.size(); i++) {
 			if(bookingList.get(i).getBook().getId() == bookId) {
-				throw new TargetConflictExeption("xxxxx :"+bookId+"xxxxx");
+				throw new TargetConflictExeption("le book :"+bookId+" est deja réservé par l'user :"+userId);
+			
 			}
 		}
 		
@@ -83,7 +86,8 @@ public class BookingServiceImpl implements BookingService {
 
 		bookingRepository.save(booking);
 		bookService.updateBook(book);
-	
+	    
+		log.info("L'user: "+userId+" a réservé le book: "+bookId);
 		return booking;
 
 	}
@@ -97,7 +101,11 @@ public class BookingServiceImpl implements BookingService {
 		bookingUpdate.setMaxDateBooking(booking.getMaxDateBooking());
 		bookingUpdate.setPriorityOrder(booking.getPriorityOrder());
 		
+		bookingRepository.save(bookingUpdate);
+	
+		log.info(" le booking: "+booking.getId()+" a bien été modifié" );
 		return booking;
+		
 		
 	}
 
@@ -118,6 +126,8 @@ public class BookingServiceImpl implements BookingService {
 		
 		bookingRepository.delete(booking);
 		bookService.updateBook(book);
+		
+		log.info("le booking :"+bookingId+" a été supprimé");
 	}
 
 	@Override
@@ -133,7 +143,10 @@ public class BookingServiceImpl implements BookingService {
 		booking.setMaxDateBooking(cal.getTime());
 		bookingRepository.save(booking);
 		
+		log.info("la date du booking:"+booking.getId()+" a bien été initialisée");
 	}
+
+	
 
 	
 

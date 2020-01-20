@@ -17,8 +17,10 @@ import com.mairie.biblio.biblioWebservice.repository.BookRepository;
 import com.mairie.biblio.biblioWebservice.repository.BookingRepository;
 import com.mairie.biblio.biblioWebservice.repository.BorrowedBookRepository;
 import com.mairie.biblio.biblioWebservice.repository.UserRepository;
-import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service(value = "borrowedBookService")
 public class BorrowedBookServiceImpl implements BorrowedBookService {
 	
@@ -81,6 +83,7 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 			borrowedBook.setDateBorrowing(cal.getTime());
 			
 			borrowedBookrepository.save(borrowedBook);
+			log.info("Le borrowedBook: "+borrowedBook.getId()+" a bien été crée");
 		}else {
 			throw new TargetConflictExeption("Le book :"+book.getTitle()+" est deja emprunter");
 		}
@@ -97,6 +100,7 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 		borrowedBookUpdate.setUser(borrowedBook.getUser());
 		
 		borrowedBookrepository.save(borrowedBookUpdate);
+		log.info("Le borrowedBook: "+borrowedBook.getId()+" a bien été modifié");
 	}
 
 	@Override
@@ -113,6 +117,7 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 		}
 
 		borrowedBookrepository.delete(borrowedBook);
+		log.info("Le borrowedBook: "+borrowedBook.getId()+" a bien été supprimé");
 		
 	}
 
@@ -147,6 +152,7 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 			for ( int i =0; i < userBooking.size(); i++) {
 				if ( userBooking.get(i).getBook().getId() == bookId) {
 					bookingRepository.delete(userBooking.get(i));
+					log.info("Le booking: "+userBooking.get(i).getBook().getId()+" a bien été supprimé");
 				}
 			}
 		}	
@@ -161,6 +167,8 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 		borrowedBook.setAvailableExtension(false);
 		
 		borrowedBookrepository.save(borrowedBook);
+		log.info("Le borrowedBook: "+borrowedBook.getId()+" n'est plus prolongable");
+		
 		
 	}
 
@@ -184,7 +192,9 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 		}
 
 		borrowedBookrepository.save(borrowedBook);
+		log.info("La date de retour du borrowedBook: "+borrowedBook.getId()+" a été prolongée a"+cal.getTime());
 		bookRepository.save(book);
+		log.info("La date de disponiblité du book: "+book.getId()+" a été modifié a "+cal.getTime());
 		
 		return borrowedBook.getDateBorrowing();
 	}

@@ -2,6 +2,7 @@ package com.mairie.biblio.biblioWebservice.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.mairie.biblio.biblioWebservice.model.Book;
 import com.mairie.biblio.biblioWebservice.service.BookService;
+import com.mairie.biblio.biblioWebservice.service.BookingServiceImpl;
 
+import lombok.extern.log4j.Log4j;
 @RestController
 public class BookController {
 	

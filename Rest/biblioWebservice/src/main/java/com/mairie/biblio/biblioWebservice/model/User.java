@@ -11,9 +11,6 @@ import javax.validation.constraints.Email;
 
 import org.hibernate.validator.constraints.Length;
 
-
-
-
 @Entity
 @Table(name = "user")
 public class User {

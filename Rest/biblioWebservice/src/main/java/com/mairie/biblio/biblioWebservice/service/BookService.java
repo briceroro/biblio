@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.mairie.biblio.biblioWebservice.model.Book;
 
+import lombok.extern.log4j.Log4j;
+
 public interface BookService {
 
 	Book findByTitle(String title);

@@ -10,6 +10,9 @@ import com.mairie.biblio.biblioWebservice.exceptions.TargetUnknownException;
 import com.mairie.biblio.biblioWebservice.model.Book;
 import com.mairie.biblio.biblioWebservice.repository.BookRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service(value = "bookService")
 public class BookserviceImpl implements BookService {
 	
@@ -55,6 +58,7 @@ public class BookserviceImpl implements BookService {
     	}
     	else {
     		bookRepository.save(book);	
+    		log.info("le book: "+book.getTitle()+" a bien été crée");
            }	
 		
 	}
@@ -76,6 +80,7 @@ public class BookserviceImpl implements BookService {
 		bookUpdateBook.setNbrBooking(book.getNbrBooking());
 		
 		bookRepository.save(bookUpdateBook);
+		log.info("le book: "+book.getId()+" a été modifié");
 	}
 
 	@Override
@@ -84,6 +89,7 @@ public class BookserviceImpl implements BookService {
         		-> new TargetUnknownException("Book :"+id+" est introuvable/n'existe pas"));
 		
 		bookRepository.delete(book);
+		log.info("le book: "+book.getTitle()+" a bien été supprimé");
 		
 	}
 
