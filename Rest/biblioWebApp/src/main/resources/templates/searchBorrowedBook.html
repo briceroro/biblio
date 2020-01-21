@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Mes emprunts</title>
+<th:block th:replace="fragments/bootstrap/linkBootstrap"></th:block>
+<th:block th:replace="fragments/fonts/font"></th:block>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <div class="container-fluid" id="containerFluid">
+     <div th:replace="fragments/header"></div>
+     
+   <h1 class="centerItemHtml">Mes emprunts</h1>
+   
+<div class="container">
+<table class="table">
+
+	<thead class="thead-dark">
+		<tr>
+			<th>Titre</th>
+			<th>Date de restitution</th>
+			<th>Prolongable</th>
+			<th></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr th:each="book:${userBorrowedbook}">
+			<td th:text="${book.book.title}"></td>
+			<td th:text="${#dates.format(book.dateBorrowing, 'dd-MM-yyyy')}"></td>
+			 <td>
+              <span th:if="${book.availableExtension == true}">oui</span>
+              <span th:unless="${book.availableExtension == true}">non</span>
+           </td>
+           <td >
+          <div th:if="${book.availableExtension == true}">
+  			<form th:action="@{searchBorrowedBook}" method="POST">
+                 <input type="hidden" name="bookId" th:value="${book.id}" />
+                 <input type="submit" value="prolonger le prêt" class="btn btn-primary" />
+             </form>
+		  </div>
+            
+            </td>
+		</tr>
+	
+	</tbody>
+</table>
+</div>
+     </div>
+     <div th:replace="fragments/bootstrap/scriptBootstrap"></div>
+     <script th:src="@{/js/borrowedBook.js}" type="text/javascript" ></script>
+</body>
+
+</html>

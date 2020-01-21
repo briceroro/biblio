@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login Biblio_p3</title>
+<th:block th:replace="fragments/bootstrap/linkBootstrap"></th:block>
+<th:block th:replace="fragments/fonts/font"></th:block>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body id="bodyLogin">
+	<div class="container-fluid" id="containerFluid">
+
+	 <div class="row h-75 justify-content-center  text-align-center" id="loginForm">
+	 
+	 
+	 
+   	<form th:action="@{/loginForm}" method="post" >  
+   <div class="form-group ">             
+            <fieldset>
+               <legend><img th:src="@{/images/logoP3v2.png}" alt="logo" class="navbar-brand" width="200"></legend>
+                <div th:if="${param.error}" class="alert alert-error">    
+                    L'username ou le mot de passe est  invalide.
+                </div>
+                <div th:if="${param.logout}" class="alert alert-success"> 
+                    Vous etes bien déconnecté.
+                </div>
+                <label for="username" class="labelLogin">Username</label>
+                <input type="text" id="username" name="username" required="required" class="form-control "/>        
+                <label for="password" class="labelLogin">Mot de passe</label>
+                <input type="password" id="password" name="password" required="required" class="form-control "/>    
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-light" id="submitLoginForm">se connecter</button>
+                </div>
+            </fieldset>
+            </div>
+        </form>
+    	 </div>
+   </div>
+     
+     <div th:replace="fragments/bootstrap/scriptBootstrap"></div>
+</body>
+
+</html>
