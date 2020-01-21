@@ -1,0 +1,80 @@
+.container-fluid{
+	margin:0;
+	padding:0;
+	font-family: 'Noto Sans KR', sans-serif;
+	
+}
+
+#bodyLogin{
+	background-color:black;
+}
+#loginForm{
+	text-align:center;
+}
+#submitLoginForm{
+	margin-top:1em;
+}
+.labelLogin{
+	color:white;
+}
+.centerItemHtml{
+	text-align: center;
+	margin: 1em;
+}
+
+a{
+	color:black;
+	text-align :center;
+}
+
+a:hover{
+	color:gray;
+}
+
+.navbar-link{
+	color:white;
+	margin:1em;
+	line-height: 110px;
+	vertical-align: middle;
+	
+}
+
+@media only screen and (max-width:990px) {
+ .navbar-link{
+    color:white;
+	margin:1em;
+	line-height: 30px;
+	vertical-align: middle;
+ }
+ #logout{
+ text-align: end;
+ }
+}
+
+.navbar-link:hover{
+	color:#dce6df;
+
+	}
+
+table
+{
+margin: auto;
+}
+
+th{
+	padding: 0.5em;
+	text-align :center;
+}
+
+td
+{
+text-align :center;
+padding: 0.5em;
+}
+
+.faBookDispo{
+	color:blue;
+}
+
+
+

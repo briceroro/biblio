@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Recherche d'ouvrage</title>
+<th:block th:replace="fragments/bootstrap/linkBootstrap"></th:block>
+<th:block th:replace="fragments/fonts/font"></th:block>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+
+	<div class="container-fluid" id="containerFluid">
+	<div th:replace="fragments/header"></div>
+	
+	<h1 class="centerItemHtml">Rechercher un livre</h1>
+
+<form th:action="@{searchBook}" method="POST" class="centerItemHtml">
+	<div class="form-group">
+		<input th:type="text" th:name="nameBook" required="required" placeholder="rechercher un livre"/>
+		<button type="submit"  class="btn btn-dark">chercher</button>
+	</div>
+</form>
+
+
+<div class="container">
+<p th:text="${ErrorCreateBooking}"></p>
+<table class="table">
+
+	<thead class="thead-dark">
+		<tr>
+			<th>Titre</th>
+			<th>Autheur</th>
+			<th>Categorie</th>
+			<th>Disponibilité</th>
+			<th></th>
+			
+		</tr>
+	</thead>
+	
+	<tbody>
+	
+		<tr th:each="book:${booksKey}">
+			<td th:text="${book.title}"></td>
+			<td th:text="${book.author}"></td>
+			<td th:text="${book.category}"></td>
+		    <td>
+              <span th:if="${book.dispo == true}"><i class="far fa-1x fa-check-circle faBookDispo"><span> </span><span th:text="${book.nbrDispo}+' disponible(s)'"></span ></i></span>
+              <span th:unless="${book.dispo == true}">
+                 <span th:if="${book.dateAvalaible} > ${today}">disponible le :<span th:text="${#dates.format(book.dateAvalaible, 'dd-MM-yyyy ')}"></span></span>
+              	 <span th:unless="${book.dateAvalaible} > ${today}">en attente de restitution</span>
+              	 <span th:if="${book.nbrBooking >= book.nbrOfBook * 2}"><span>, réservation complete</span></span>
+              	 <span th:unless="${book.nbrBooking >= book.nbrOfBook * 2}"><span>, réservation(s): </span><span th:text="${book.nbrBooking}"></span></span>
+              </span>
+           </td>
+          
+           <td th:unless="${book.dispo == true}">
+            <form th:action="@{searchBookAfterBooking}" method="POST">
+	       	   <div class="form-group">
+	       	     <span th:unless="${book.nbrBooking >= book.nbrOfBook * 2}">
+		        	 <button type="submit" th:name="bookId" th:value="${book.id}" class="btn btn-primary">réserver</button>
+		         </span>
+	          </div>
+	        </form>
+           </td>
+       
+		</tr>
+		
+	</tbody>
+	
+	
+</table>
+</div>
+
+ </div>
+   <div th:replace="fragments/bootstrap/scriptBootstrap"></div>
+ 
+</body>
+</html>
