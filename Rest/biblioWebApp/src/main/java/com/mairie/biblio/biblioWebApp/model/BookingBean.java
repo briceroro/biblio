@@ -2,6 +2,18 @@ package com.mairie.biblio.biblioWebApp.model;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+/**
+ * Bean servant un booking aprés l'avoir récuperer via le webservice
+ * @author briceroro
+ *
+ */
+@Getter
+@Setter
+@NoArgsConstructor
 public class BookingBean {
 
 	private int id;
@@ -14,54 +26,9 @@ public class BookingBean {
 
 	private BookBean book;
 	
-    public BookingBean() {
-		
-	}
-	
 	public BookingBean( UserBean user, BookBean book) {
 		this.user = user;
 		this.book = book;	
 	}
-	
-	public int getPriorityOrder() {
-		return priorityOrder;
-	}
-
-	public void setPriorityOrder(int priorityOrder) {
-		this.priorityOrder = priorityOrder;
-	}
-
-	public Date getMaxDateBooking() {
-		return maxDateBooking;
-	}
-
-	public void setMaxDateBooking(Date maxDateBooking) {
-		this.maxDateBooking = maxDateBooking;
-	}
-
-	public UserBean getUser() {
-		return user;
-	}
-
-	public void setUser(UserBean user) {
-		this.user = user;
-	}
-
-	public BookBean getBook() {
-		return book;
-	}
-
-	public void setBook(BookBean book) {
-		this.book = book;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-	
 	
 }

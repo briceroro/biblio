@@ -17,7 +17,11 @@ import com.mairie.biblio.biblioWebApp.model.UserBean;
 import com.mairie.biblio.biblioWebApp.proxies.BookingProxy;
 import com.mairie.biblio.biblioWebApp.proxies.UserProxy;
 
-
+/**
+ * Controller servant a recuperer la page SearchBooking
+ * @author briceroro
+ *
+ */
 @Controller
 public class SearchBookingController {
 
@@ -26,6 +30,7 @@ public class SearchBookingController {
 	
 	@Autowired 
 	private BookingProxy bookingProxy;
+	
 	/**
 	 * methode Get servant a afficher les booking en fonction de luser identifié
 	 * 

@@ -2,8 +2,8 @@ package com.mairie.biblio.biblioWebApp.controller;
 
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * Controller de la page login de l'applcication
@@ -17,7 +17,7 @@ public class LoginController {
 	 * Methode request get pour la page login
 	 * @return la page de login
 	 */
-	@RequestMapping(value="/loginForm", method = RequestMethod.GET)
+	@GetMapping(value="/loginForm")
 	public String home(){
 
 		return "loginForm";
@@ -27,7 +27,7 @@ public class LoginController {
 	 * Methode request pour la page login
 	 * @return la page de login
 	 */
-	@RequestMapping(value="/loginForm", method = RequestMethod.POST)
+	@PostMapping(value="/loginForm")
 	public String homePOST(){
 
 		return "loginForm";

@@ -8,10 +8,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.mairie.biblio.biblioWebApp.model.BookBean;
 import com.mairie.biblio.biblioWebApp.model.BookingBean;
 import com.mairie.biblio.biblioWebApp.model.UserBean;
@@ -40,9 +39,9 @@ public class SearchBookController {
 	/**
 	 * Methode request GET servant a recuperer la page SearchBook avec l'user identifé
 	 * @param model
-	 * @return
+	 * @return la page searchBook
 	 */
-	@RequestMapping(value="/searchBook", method = RequestMethod.GET)
+	@GetMapping(value="/searchBook")
 	public String home(ModelMap model){
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -57,9 +56,9 @@ public class SearchBookController {
 	 * Methode request POST servant a recuperer la page SearchBook avec l'user identifé et une liste de Book suivant le param rensigné
 	 * @param model afin d'ajouter l'user et les books au model
 	 * @param name correspondant au titre du book rechercher par l'user
-	 * @return
+	 * @return la page searchBook
 	 */
-	@RequestMapping(value="/searchBook", method = RequestMethod.POST)
+	@PostMapping(value="/searchBook")
 	public String home(ModelMap model,@RequestParam(name="nameBook")String name){
 		
 		if(name  != null) {
@@ -91,8 +90,13 @@ public class SearchBookController {
 		return "searchBook";
 	}
 	
-	
-	@RequestMapping(value="/searchBookAfterBooking", method = RequestMethod.POST)
+	/**
+	 * methode servant a renvoyer la page searchBook aprés avoir fait une réservation
+	 * @param model
+	 * @param bookId
+	 * @return la page searchBook
+	 */
+	@PostMapping(value="/searchBookAfterBooking")
 	public String searchBookAfterBooking(ModelMap model,@RequestParam(name="bookId")int bookId){
 			
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

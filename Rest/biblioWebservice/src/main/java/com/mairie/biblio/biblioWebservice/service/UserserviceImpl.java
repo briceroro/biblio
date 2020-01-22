@@ -42,12 +42,12 @@ public class UserserviceImpl implements UserService {
 
 	@Override
 	public void createUser(User user) {
-		if(userRepository.findByUsername(user.getUserName()).isPresent() == true) {
-    		throw new TargetConflictExeption("User :"+user.getUserName()+" existe deja");
+		if(userRepository.findByUsername(user.getName()).isPresent() == true) {
+    		throw new TargetConflictExeption("User :"+user.getName()+" existe deja");
     	}
     	else {
     		userRepository.save(user);	
-    		log.info("L'user: "+user.getUserName()+" a été crée");
+    		log.info("L'user: "+user.getName()+" a été crée");
            }	
 	}
 
@@ -60,12 +60,12 @@ public class UserserviceImpl implements UserService {
         userUpdate.setPassword(user.getPassword());
         userUpdate.setName(user.getName());
         userUpdate.setLastName(user.getLastName());
-        userUpdate.setUserName(user.getUserName());
+        userUpdate.setName(user.getName());
         userUpdate.setActive(user.isActive());
         userUpdate.setRole(user.getRole());
   	
          userRepository.save(userUpdate);
-         log.info("L'user: "+user.getUserName()+" a été modifié");
+         log.info("L'user: "+user.getName()+" a été modifié");
 		
 	}
 
@@ -75,7 +75,7 @@ public class UserserviceImpl implements UserService {
         		-> new TargetUnknownException("User :"+id+" est introuvable/n'existe pas impossible de le supprimer"));
     	
     	userRepository.delete(user);
-    	log.info("L'user: "+user.getUserName()+" a été supprimé");
+    	log.info("L'user: "+user.getName()+" a été supprimé");
 		
 	}
 

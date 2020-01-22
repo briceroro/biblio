@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mairie.biblio.biblioWebApp.model.BookingBean;
 
+
 @FeignClient(name = "microservice-biblio", url = "localhost:8080")
 public interface BookingProxy {
 

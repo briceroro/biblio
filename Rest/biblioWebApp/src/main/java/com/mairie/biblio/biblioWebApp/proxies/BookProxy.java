@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import com.mairie.biblio.biblioWebApp.model.BookBean;
 
 @FeignClient (name = "microservice-biblio", url = "localhost:8080")

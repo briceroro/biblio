@@ -28,6 +28,7 @@ public class SearchBorrowedBookController {
 	
 	@Autowired 
 	private BorrowedBookProxy borrowedBookProxy;
+	
 	/**
 	 * Methode request GET qui affiche la liste des borrowedBook de l'user identifé
 	 * @param model afin d'ajouter l'user et les borrowedBook au model
@@ -50,7 +51,12 @@ public class SearchBorrowedBookController {
 	
 	}
 	
-	
+	/**
+	 * methode servant a renvoyer la page borrowedBook apres modifié la date d'un borrowedBook
+	 * @param model
+	 * @param bookid
+	 * @return la page searchBorrowedBook
+	 */
 	@RequestMapping(value="/searchBorrowedBook", method = RequestMethod.POST)
 	public String searchBorrowedBook(ModelMap model,@RequestParam(name="bookId")int bookid){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
