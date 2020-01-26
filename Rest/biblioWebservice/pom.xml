@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.mairie.biblio</groupId>
 	<artifactId>biblioWebservice</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-RELEASE</version>
 	<name>biblioWebservice</name>
 	<description>webservice REST</description>
 
