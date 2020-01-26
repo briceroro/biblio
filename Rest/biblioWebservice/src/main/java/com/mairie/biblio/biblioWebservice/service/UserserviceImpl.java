@@ -10,6 +10,11 @@ import com.mairie.biblio.biblioWebservice.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * class servant a implémenter le metier de la class user
+ * @author briceroro
+ *
+ */
 @Slf4j
 @Service(value = "userService")
 public class UserserviceImpl implements UserService {
@@ -22,24 +27,43 @@ public class UserserviceImpl implements UserService {
 		return userRepository.findAll();
 	}
 
+	/**
+	 * methode servant a rechercher un user par l'username
+	 * @param username de l'user a chercher
+	 * @return user recherché
+	 */
 	@Override
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username).orElseThrow(()
         		-> new TargetUnknownException("User :"+username+" est introuvable/n'existe pas"));
 	}
-	
+	/**
+	 * methode servant a rechercher un user par son nom
+	 * @param nom de l'user a chercher
+	 * @return l'user recherché
+	 */
 	@Override
 	public User findByName(String name) {
 		return userRepository.findByName(name).orElseThrow(()
         		-> new TargetUnknownException("User :"+name+" est introuvable/n'existe pas"));
 	}
 
+	/**
+	 * methode servant a rechercher un user par son id
+	 * @param id de l'user a rechercher
+	 * @return user recherché ou une exception
+	 */
 	@Override
 	public User findUserById(int id) {
 		return userRepository.findById(id).orElseThrow(()
         		-> new TargetUnknownException("User :"+id+" est introuvable/n'existe pas"));
 	}
 
+	/**
+	 * methode servant a créer un user
+	 * @param user a créer
+	 * @return user créer
+	 */
 	@Override
 	public void createUser(User user) {
 		if(userRepository.findByUsername(user.getName()).isPresent() == true) {
@@ -51,8 +75,13 @@ public class UserserviceImpl implements UserService {
            }	
 	}
 
+	/**
+	 * methode servant a modifier un user
+	 * @Param user a modifier
+	 * @return user modifié
+	 */
 	@Override
-	public void updateEmployee(User user) {
+	public void updateUser(User user) {
 		User userUpdate = userRepository.findById(user.getId()).orElseThrow(()
         		-> new TargetUnknownException("User :"+user.getId()+" est introuvable/n'existe pas impossible de le modifier"));
     	 
@@ -69,6 +98,11 @@ public class UserserviceImpl implements UserService {
 		
 	}
 
+	/**
+	 * methode servant a suprrimer un user
+	 * 
+	 * @param id de l'user a supprimer
+	 */
 	@Override
 	public void deleteUser(int id) {
 		User user = userRepository.findById(id).orElseThrow(()

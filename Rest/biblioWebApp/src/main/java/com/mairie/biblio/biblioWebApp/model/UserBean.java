@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * Bean servant un user aprés l'avoir récuperer via le webservice
+ * Bean servant un user aprés l'avoir récupéré via le webservice
  * @author briceroro
  *
  */

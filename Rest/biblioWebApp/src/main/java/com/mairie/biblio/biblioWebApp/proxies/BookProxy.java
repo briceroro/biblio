@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.mairie.biblio.biblioWebApp.model.BookBean;
 
+/**
+ * interface servant a récupéré les méthodes RestController
+ *  de bookController du webservice
+ * @author briceroro
+ *
+ */
 @FeignClient (name = "microservice-biblio", url = "localhost:8080")
 public interface BookProxy {
 

@@ -20,6 +20,11 @@ import com.mairie.biblio.biblioWebservice.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * class servant a implémenter le metier de la class borrowedBook
+ * @author briceroro
+ *
+ */
 @Slf4j
 @Service(value = "borrowedBookService")
 public class BorrowedBookServiceImpl implements BorrowedBookService {
@@ -36,22 +41,41 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 	@Autowired
 	BookingRepository bookingRepository;
 
+	/**
+	 * methode servant a rechercher un borrowedBook par son id
+	 * @param id du borrowedBook a chercher
+	 * @return le borrowedBook rechercher
+	 */
 	@Override
 	public BorrowedBook findById(int id) {
 		return borrowedBookrepository.findById(id).orElseThrow(()
         		-> new TargetUnknownException("BorrowedBook :"+id+" est introuvable/n'existe pas"));
 	}
 
+	/**
+	 * methode servant a retourner la totalité des borrowedBook
+	 * @return un iterable de la liste totale des borrowedBook
+	 */
 	@Override
 	public Iterable<BorrowedBook> findAll() {
 		return borrowedBookrepository.findAll();
 	}
 	
+	/**
+	 * methode servant a retourner une liste des borrowedBook d'un user
+	 * @param id de l'user
+	 * @return la liste des borrowedBook de l'user en param
+	 */
 	@Override
 	public List<BorrowedBook> findByUser(int id) {
 		return borrowedBookrepository.findByUser_id(id);
 	}
 
+	/**
+	 * methode servant a créer un borrowedBook
+	 * @param le borrowedBook a créer
+	 * @return le borrowedBook crée
+	 */
 	@Override
 	public void createBorrowedBook(BorrowedBook borrowedBook) {
 		
@@ -89,6 +113,11 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 		}
 	}
 
+	/**
+	 * methode servant a modifier un borrowedBook
+	 * @param le borrowedBook a modifiier
+	 * @return le borrowedBook modifié
+	 */
 	@Override
 	public void updateBorrowedBook(BorrowedBook borrowedBook) {
 		BorrowedBook borrowedBookUpdate =borrowedBookrepository.findById(borrowedBook.getId()) .orElseThrow(()
@@ -103,6 +132,10 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 		log.info("Le borrowedBook: "+borrowedBook.getId()+" a bien été modifié");
 	}
 
+	/**
+	 * methode servant a supprimer un borrowedBook
+	 * @param le borrowedbook a supprimer
+	 */
 	@Override
 	public void deleteBorrowedBook(int id) {
 		BorrowedBook borrowedBook = borrowedBookrepository.findById(id) .orElseThrow(()
@@ -121,6 +154,10 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 		
 	}
 
+	/**
+	 * methode servant a retourner un liste de borrowedBook non retournés
+	 * @return la liste des borrowedBook non retournés
+	 */
 	@Override
 	public List<BorrowedBook> findBorrowedBookNotReturned() {
 		
@@ -140,6 +177,10 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 	}
 
 
+	/**
+	 * methode servant a vérifier si un user n'a pas dèja emprunté un book
+	 * @param le borrowedBook a vérifier
+	 */
 	@Override
 	public void checkBooking(BorrowedBook borrowedBook) {
 	
@@ -158,6 +199,10 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 		}	
 	}
 
+	/**
+	 * methode servant a rendre impossible l'extenson d'un borrowedBook
+	 * @param id du borrowedBook a modifier
+	 */
 	@Override
 	public void setFalseAvailableExtension(int id) {
 		
@@ -172,6 +217,11 @@ public class BorrowedBookServiceImpl implements BorrowedBookService {
 		
 	}
 
+	/**
+	 * methode servant a modifier la date de retour d'un borrowedBook
+	 * @param id du borrowedbook a modifier
+	 * @return la nouvelle date de retour du borrowedBook
+	 */
 	@Override
 	public Date extensionDateBorrowing(int id) {
 		BorrowedBook borrowedBook = borrowedBookrepository.findById(id).orElseThrow(()

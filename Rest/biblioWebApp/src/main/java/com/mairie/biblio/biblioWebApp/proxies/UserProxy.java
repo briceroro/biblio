@@ -1,15 +1,17 @@
 package com.mairie.biblio.biblioWebApp.proxies;
 
-
-
-
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.mairie.biblio.biblioWebApp.model.UserBean;
 
-
+/**
+ * interface servant a récupéré les méthodes RestController
+ *  de userController du webservice
+ * @author briceroro
+ *
+ */
 @FeignClient(name = "microservice-biblio", url = "localhost:8080")
 public interface UserProxy {
 	

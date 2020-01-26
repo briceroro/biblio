@@ -16,6 +16,11 @@ import com.mairie.biblio.biblioWebservice.model.BorrowedBook;
 import com.mairie.biblio.biblioWebservice.repository.BookingRepository;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * class servant a implémenter le metier de la class booking
+ * @author briceroro
+ *
+ */
 @Slf4j
 @Service(value="bookingService")
 public class BookingServiceImpl implements BookingService {
@@ -33,27 +38,51 @@ public class BookingServiceImpl implements BookingService {
 	@Autowired
 	BorrowedBookService borrowedBookService;
 
+	/**
+	 * methode servant a retouner la liste  des booking
+	 * @return un iterable de  la totalité des booking
+	 */
 	@Override
 	public Iterable<Booking> finAll() {
 		return bookingRepository.findAll();
 	}
 
+	/**
+	 * methode servant a retourner la liste des booking d'un user
+	 * @param id de l'user
+	 * @return la liste des booking d'un user
+	 */
 	@Override
 	public List<Booking> findAllByUser(int userId) {
 		return bookingRepository.findByUser_id(userId);
 	}
 
+	/**
+	 * methode servant a retourner un iterable des booking par book
+	 * @param id du book
+	 * @return la liste des booking du book 
+	 */
 	@Override
 	public Iterable<Booking> findAllByBook(int bookId) {
 		return bookingRepository.findByBook_id(bookId);
 	}
 	
+	/**
+	 * methode servant a récupéré un booking par son id
+	 * @param id du booking
+	 * @return une exception ou le booking en param
+	 */
 	@Override
 	public Booking findById(int bookingId) {
 		return bookingRepository.findById(bookingId).orElseThrow(()
         		-> new TargetUnknownException("booking :"+bookingId+" est introuvable/n'existe pas"));
 	}
 
+	/**
+	 * methode servant a creer un booking 
+	 * @param le booking a inscrire en bdd
+	 * @return le booking créé 
+	 */
 	@Override
 	public Booking createBooking(Booking booking) {
 		
@@ -92,6 +121,11 @@ public class BookingServiceImpl implements BookingService {
 
 	}
 
+	/**
+	 * methode servant a modifier un booking 
+	 * @param booking a modifier
+	 * @return le booking modifié
+	 */
 	@Override
 	public Booking updateBooking(Booking booking) {
 
@@ -109,6 +143,11 @@ public class BookingServiceImpl implements BookingService {
 		
 	}
 
+	/**
+	 * methode servant a supprimer  un booking
+	 * @param le booking a supprimer
+	 * 
+	 */
 	@Override
 	public void deleteBooking(Booking booking) {
 		int bookingId = booking.getId();
@@ -129,7 +168,12 @@ public class BookingServiceImpl implements BookingService {
 		
 		log.info("le booking :"+bookingId+" a été supprimé");
 	}
+	
 
+	/**
+	 * methode servant a initialiser la date limite d'un booking
+	 * @param id du booking a modifier
+	 */
 	@Override
 	public void initDateLimiteBooking(int id) {
 		Booking booking = bookingRepository.findById(id).orElseThrow(()
@@ -145,9 +189,4 @@ public class BookingServiceImpl implements BookingService {
 		
 		log.info("la date du booking:"+booking.getId()+" a bien été initialisée");
 	}
-
-	
-
-	
-
 }

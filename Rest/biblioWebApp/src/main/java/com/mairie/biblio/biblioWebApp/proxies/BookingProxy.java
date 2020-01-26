@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mairie.biblio.biblioWebApp.model.BookingBean;
 
-
+/**
+ * interface servant a récupéré les méthodes RestController
+ *  de bookingController du webservice
+ * @author briceroro
+ *
+ */
 @FeignClient(name = "microservice-biblio", url = "localhost:8080")
 public interface BookingProxy {
 

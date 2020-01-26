@@ -15,43 +15,52 @@ import com.mairie.biblio.biblioWebservice.model.User;
 import com.mairie.biblio.biblioWebservice.repository.UserRepository;
 import com.mairie.biblio.biblioWebservice.service.UserService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class UserController{
 	
 	@Autowired
 	UserService userService;
 	
+	@ApiOperation(value = "rechercher tous les user")
 	@GetMapping(value="/user/all")
 	public Iterable<User> findAll(){
 		return userService.findAll();
 		
 	}
 	
+	@ApiOperation(value = "rechercher un user par son username")
     @GetMapping(value="/user/username/{username}")
     public  User findByUsername(@PathVariable String username){
         return userService.findByUsername(username);
     }
     
+	@ApiOperation(value = "rechercher un user par son nom")
     @GetMapping(value="/user/name/{name}")
     public  User findByName(@PathVariable String name){
         return userService.findByUsername(name);
     }
     
+	@ApiOperation(value = "rechercher un user par son id")
     @GetMapping(value="/user/id/{id}")
     public  User findUserById(@PathVariable int id) {
         return userService.findUserById(id);
     }
    
+	@ApiOperation(value = "créer un user")
     @PostMapping(value="/user")
     public void createUser(@RequestBody User user) {
     	userService.createUser(user);
     }
     
+	@ApiOperation(value = "modifier un user")
     @PutMapping("/user")
     public void updateEmployee(@RequestBody User user) {	
-    	userService.updateEmployee(user);
+    	userService.updateUser(user);
     }
     
+	@ApiOperation(value = "supprimer un user")
     @DeleteMapping(value="/user/{id}")
     public void deleteUser(@PathVariable int id) {
     	userService.deleteUser(id);
