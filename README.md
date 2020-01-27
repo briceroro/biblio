@@ -1,6 +1,6 @@
-# biblio
+# biblioP3REST
 
-Depot du projet  6 "Améliorez le système d’information de la bibliothèque" de la formation Expert JEE [formation Expert JEE](https://openclassrooms.com/fr/paths/99-expert-java-ee) OpenClassroom.
+Adatation REST du projet [biblioP3SOAP](https://github.com/briceroro/biblioP3SOAP-en-mode-legacy-)
 
 ## Technologies utilisés:
 
@@ -8,9 +8,12 @@ Depot du projet  6 "Améliorez le système d’information de la bibliothèque" 
 * OpenJDk 11
 * Maven 3.6.0
 * Spring Boot 2.2.2
-  * Security
-  * Thymleaf
-  * Web
+  * data JPA
+  * Spring Web
+  * Lombok
+  * freemarker
+* MYSQL 5.7
+* SWAGGER UI 2.8.0
 
 ### WebApp
 * OpenJDk 11
@@ -18,45 +21,47 @@ Depot du projet  6 "Améliorez le système d’information de la bibliothèque" 
 * Spring Boot 2.2.2
   * Security
   * Thymleaf
-  * Web
+  * Spring web
+  * Lombok
+* Spring cloud 2.2.2
+  * openFeign
 
 
-## Configuration
+## Configuration rapide
 
+### webService et webApp:
+#### gestion Tomcat
 
-#### Connexion a la BDD:
-
-Dans le fichier : /WebService_biblio_p3/src/main/resources/hibernate.cfg.xml:
-* connection-url:
-L'adresse de votre BDD.*(rajouter si probleme de timezone aprés votre BDD: useSSL=false&amp;serverTimezone=UTC)*  
-* connection.username:
-Votre user.
-* connection.password:
-Le password de votre user
-
-```java
-        <property name="connection.url">votre BDD</property>
-        <property name="connection.username">votre username</property>
-        <property name="connection.password">votre password</property>
-```
-### WebApp<a name="configAppWebApp"></a>
-
-#### Pour la gestion de tomcat:
-
-Dans le fichier /WebApp_biblio_p3/src/main/resources/application.properties
+Dans le fichier application.properties
 * server.port:
 Definir un port différent d'un port deja utilisé( ex: Glassfish)
 ```java
 # tomcat
 server.port= le port choisi pour votre App
 ```
+### webService
+#### gestion BDD
 
-## Déployement des Applications via IDE<a name="deployApp"></a>
+Dans le fichier application.properties
+* spring.datasource.url:
+L'adresse de votre BDD.*(rajouter si probleme de timezone aprés votre BDD: useSSL=false&amp;serverTimezone=UTC)*  
+* spring.datasource.username:
+Votre user.
+* connection.password:
+Le password de votre user
 
-Une fois la WebApp configuré:
+```java
+        spring.datasource.url=jdbc:mysql://localhost:3306/biblio
+        spring.datasource.username=*************
+        spring.datasource.password=*************
+```
+
+## Déployement des Applications 
+
+Une fois les applications configurées:
 * faire un mvn clean install avec Maven
 * soit faire:
   * lancer directement l'application avec mvn spring-boot:run
-  * deployer dans tomcat le war généré
+  * deployer directement dans votre IDE
 
 
