@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Mes réservations</title>
+<th:block th:replace="fragments/bootstrap/linkBootstrap"></th:block>
+<th:block th:replace="fragments/fonts/font"></th:block>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+
+ 	<div class="container-fluid" id="containerFluid">
+   	 	 <div th:replace="fragments/header"></div>
+     
+  		 <h1 class="centerItemHtml">Mes réservations</h1>
+
+       <div class="container">
+       <p th:text="${deleteBooking}"></p>
+<table class="table">
+
+	<thead class="thead-dark">
+		<tr>
+			<th>Titre</th>
+			<th>Date de retour prévue</th>
+			<th>Position liste d'attente</th>
+			<th></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr th:each="book:${listUserBooking}">
+			<td th:text="${book.book.title}"></td>
+			<td th:text="${#dates.format(book.book.dateAvalaible, 'dd-MM-yyyy ')}"></td>
+            <td th:text="${book.priorityOrder}"></td>
+            <td >
+  			<form th:action="@{searchBooking}" method="POST">
+                 <input type="hidden" name="bookingId" th:value="${book.id}" />
+                 <input type="submit" value="annuler ma réservation" class="btn btn-primary" />
+             </form>
+           </td>
+		</tr>	
+	</tbody>
+</table>
+	</div>
+	
+	</div>
+ 
+   <div th:replace="fragments/bootstrap/scriptBootstrap"></div>
+ 
+</body>
+</html>

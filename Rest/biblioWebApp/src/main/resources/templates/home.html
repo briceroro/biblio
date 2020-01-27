@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Acceuil Biblio_p3</title>
+<th:block th:replace="fragments/bootstrap/linkBootstrap"></th:block>
+<th:block th:replace="fragments/fonts/font"></th:block>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div class="container-fluid" id="containerFluid">
+	<div th:replace="fragments/header"></div>
+    	 
+    	 <div  class="container justify-content-center"  id="homecontent">
+    	 
+    	 	<h1 class="centerItemHtml">Bienvenue <span th:text="${username}"></span></h1>
+    	 	
+    	 	
+    	    <ul class="list-group">
+           		 <li class="list-group">
+             		 <a th:href="@{/searchBook}" >Rechercher un livre</a>
+            	 </li>
+
+                 <li class="list-group">
+                     <a th:href="@{/searchBorrowedBook}" >Mes ouvrages</a>
+                 </li>
+                 <li class="list-group">
+             		 <a th:href="@{/searchBooking}">Mes réservations</a>
+            	 </li>
+            </ul>
+    	 </div>
+   </div>
+     
+     <div th:replace="fragments/bootstrap/scriptBootstrap"></div>
+</body>
+
+</html>

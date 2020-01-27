@@ -1,0 +1,38 @@
+<header class="main-header">
+
+            <div class="container-fluid" id="headerMenu">
+            
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between " id="menuBottom">
+                   
+                    
+                    <button class="navbar-toggler" data-toggle="collapse" data-target="#navmenu">
+                  	  <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navmenu">
+                        <ul class="navbar-nav m-auto justify-content-center">
+                        	<li><img th:src="@{/images/logoP3v2.png}" alt="logo" class="navbar-brand" width="100"></li>
+                            <li class="navbar-item">
+                                <a th:href="@{/}" class="navbar-link">Accueil</a>
+                            </li>
+
+                            <li class="navbar-item">
+                                <a th:href="@{/searchBook}" class="navbar-link active">Rechercher un livre</a>
+                            </li>
+
+                            <li class="navbar-item">
+                                <a th:href="@{/searchBorrowedBook}" class="navbar-link">Mes emprunts</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a th:href="@{/searchBooking}" class="navbar-link">Mes réservations</a>
+                            </li>
+                            <li>
+                            
+                            </li>
+                        </ul>
+                        <form th:action="@{logout}" method="POST" id="logout">
+							<button th:type="submit"  class="btn btn-light">Logout</button>
+						</form>
+                    </div>
+                </nav>	
+            </div>
+     </header>
