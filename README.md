@@ -2,6 +2,12 @@
 
 Adatation REST du projet [biblioP3SOAP](https://github.com/briceroro/biblioP3SOAP-en-mode-legacy-)
 
+## Documentation API
+
+une fois le webService lancé aller sur :
+
+http://localhost:8080/swagger-ui.html
+
 ## Technologies utilisés:
 
 ### WebService 
